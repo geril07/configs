@@ -8,5 +8,6 @@
   "arrowParens": "always",
   "endOfLine": "lf",
   "insertFinalNewline": true,
-  "sortPackageJson": true
+  "sortPackageJson": true,
+  "ignorePatterns": ["plugins/anti-slop/index.js"]
 }

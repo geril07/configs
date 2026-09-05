@@ -14,5 +14,5 @@
       }
     ]
   },
-  "ignorePatterns": ["dist/**"]
+  "ignorePatterns": ["dist/**", "plugins/anti-slop/index.js"]
 }

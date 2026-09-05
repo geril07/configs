@@ -3,9 +3,11 @@ export const node = {
   rules: {
     "node/no-path-concat": "error",
     "node/no-exports-assign": "error",
+    "promise/always-return": "error",
+    "promise/catch-or-return": "warn",
     "promise/no-multiple-resolved": "error",
     "promise/no-new-statics": "error",
-    "promise/no-return-in-finally": "error",
+    "promise/no-return-in-finally": "warn",
   },
 }
 

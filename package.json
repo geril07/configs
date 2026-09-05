@@ -26,22 +26,29 @@
     "./oxfmt/base": "./oxfmt/base.js",
     "./oxfmt/tailwind": "./oxfmt/tailwind.js",
     "./oxfmt": "./oxfmt/index.js",
-    "./plugin/anti-slop": "./plugins/anti-slop/index.ts"
+    "./plugin/anti-slop": {
+      "types": "./plugins/anti-slop/index.d.ts",
+      "import": "./plugins/anti-slop/index.js",
+      "default": "./plugins/anti-slop/index.js"
+    }
   },
   "scripts": {
+    "build:anti-slop": "node scripts/build-anti-slop.mjs",
     "lint": "oxlint",
     "fmt": "oxfmt",
     "fmt:check": "oxfmt --check"
   },
+  "devDependencies": {
+    "@oxlint/plugins": "1.81.0",
+    "esbuild": "0.28.2"
+  },
   "peerDependencies": {
     "oxfmt": ">=0.60.0",
-    "oxlint": ">=1.80.0",
+    "oxlint": ">=1.81.0",
+    "oxlint-tsgolint": ">=7.0.0",
     "typescript": ">=5.8.0"
   },
   "peerDependenciesMeta": {
-    "@oxlint/plugins": {
-      "optional": true
-    },
     "oxlint-tsgolint": {
       "optional": true
     }
