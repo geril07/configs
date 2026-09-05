@@ -10,11 +10,11 @@ A minimal, composable repository of configuration primitives for **TypeScript**,
 
 The base is strictly typed by default (`noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`, `noImplicitOverride`). Choose the runtime configuration for your project:
 
-| Export                        | Target                                    | Key Properties                                                                                                                                                                                                                                                                            |
-| ----------------------------- | ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `@geril07/configs/ts/base`    | Universal strict baseline                 | `strict: true`, `noUncheckedIndexedAccess: true`, `exactOptionalPropertyTypes: true`, `noImplicitOverride: true`, `noFallthroughCasesInSwitch: true`, `noPropertyAccessFromIndexSignature: true`, `skipLibCheck: true`, `forceConsistentCasingInFileNames: true`, `isolatedModules: true` |
-| `@geril07/configs/ts/bundler` | Frontend apps (Vite / Next.js / TanStack) | Extends `base`. Adds `module: "preserve"`, `moduleResolution: "bundler"`, `noEmit: true`. _(JSX intentionally omitted for framework flexibility)._                                                                                                                                        |
-| `@geril07/configs/ts/node`    | Node.js backend services                  | Extends `base`. Adds `module: "nodenext"`, `moduleResolution: "nodenext"`, `types: ["node"]`.                                                                                                                                                                                             |
+| Export                        | Target                         | Key Properties                                                                                                                                                                                                                                                                            |
+| ----------------------------- | ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `@geril07/configs/ts/base`    | Universal strict baseline      | `strict: true`, `noUncheckedIndexedAccess: true`, `exactOptionalPropertyTypes: true`, `noImplicitOverride: true`, `noFallthroughCasesInSwitch: true`, `noPropertyAccessFromIndexSignature: true`, `skipLibCheck: true`, `forceConsistentCasingInFileNames: true`, `isolatedModules: true` |
+| `@geril07/configs/ts/bundler` | Frontend apps (Vite / Next.js) | Extends `base`. Adds `module: "preserve"`, `moduleResolution: "bundler"`, `noEmit: true`. _(JSX intentionally omitted for framework flexibility)._                                                                                                                                        |
+| `@geril07/configs/ts/node`    | Node.js backend services       | Extends `base`. Adds `module: "nodenext"`, `moduleResolution: "nodenext"`, `types: ["node"]`.                                                                                                                                                                                             |
 
 _Note:_ Always declare `include`, `exclude`, and framework-specific `jsx` (e.g. `"jsx": "react-jsx"`) in your project-local `tsconfig.json`.
 
@@ -24,15 +24,14 @@ _Note:_ Always declare `include`, `exclude`, and framework-specific `jsx` (e.g. 
 
 Oxlint configurations are exported as composable JavaScript objects.
 
-| Export                              | Scope                   | Included Checks                                                                                                                                                                       |
-| ----------------------------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `@geril07/configs/oxlint/base`      | Universal               | `typescript`, `unicorn`, and `oxc` plugins. Core correctness, `eqeqeq`, `no-unused-vars` (ignoring `_` prefixes), safe Unicorn checks.                                                |
-| `@geril07/configs/oxlint/react`     | React applications      | `react/rules-of-hooks`, `react/exhaustive-deps`, `react/jsx-key`, `react/jsx-no-duplicate-props`, `react/no-danger-with-children`. _Experimental compiler checks omitted._            |
-| `@geril07/configs/oxlint/next`      | Next.js applications    | `nextjs/no-html-link-for-pages` (error), `nextjs/no-sync-scripts` (error), font display, image and head element checks.                                                               |
-| `@geril07/configs/oxlint/tanstack`  | TanStack Router / Start | Ignores generated `routeTree.gen.ts`.                                                                                                                                                 |
-| `@geril07/configs/oxlint/node`      | Node.js services        | `node/no-path-concat`, `node/no-exports-assign`, `promise/no-multiple-resolved`, `promise/no-new-statics`, `promise/no-return-in-finally`.                                            |
-| `@geril07/configs/oxlint/typed`     | Type-aware linting      | Enables `options.typeAware: true`. Checks `no-floating-promises`, `no-misused-promises`, and `switch-exhaustiveness-check`. _(Requires `oxlint-tsgolint`)_                            |
-| `@geril07/configs/oxlint/anti-slop` | Anti-slop / AI guard    | Enables Dillon Mulroy's type-evidence rules: `no-chained-type-assertions`, `no-widen-then-assert`, `no-unknown-type-aliases`, `no-unsafe-dictionary-type`, `no-known-value-widening`. |
+| Export                              | Scope                | Included Checks                                                                                                                                                                       |
+| ----------------------------------- | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `@geril07/configs/oxlint/base`      | Universal            | `typescript`, `unicorn`, and `oxc` plugins. Core correctness, `eqeqeq`, `no-unused-vars` (ignoring `_` prefixes), safe Unicorn checks.                                                |
+| `@geril07/configs/oxlint/react`     | React applications   | `react/rules-of-hooks`, `react/exhaustive-deps`, `react/jsx-key`, `react/jsx-no-duplicate-props`, `react/no-danger-with-children`. _Experimental compiler checks omitted._            |
+| `@geril07/configs/oxlint/next`      | Next.js applications | `nextjs/no-html-link-for-pages` (error), `nextjs/no-sync-scripts` (error), font display, image and head element checks.                                                               |
+| `@geril07/configs/oxlint/node`      | Node.js services     | `node/no-path-concat`, `node/no-exports-assign`, `promise/no-multiple-resolved`, `promise/no-new-statics`, `promise/no-return-in-finally`.                                            |
+| `@geril07/configs/oxlint/typed`     | Type-aware linting   | Enables `options.typeAware: true`. Checks `no-floating-promises`, `no-misused-promises`, and `switch-exhaustiveness-check`. _(Requires `oxlint-tsgolint`)_                            |
+| `@geril07/configs/oxlint/anti-slop` | Anti-slop / AI guard | Enables Dillon Mulroy's type-evidence rules: `no-chained-type-assertions`, `no-widen-then-assert`, `no-unknown-type-aliases`, `no-unsafe-dictionary-type`, `no-known-value-widening`. |
 
 ---
 
@@ -124,35 +123,7 @@ export default defineConfig({
 
 ---
 
-### Example C: TanStack Start / Router
-
-**`tsconfig.json`:**
-
-```json
-{
-  "extends": "@geril07/configs/ts/bundler",
-  "compilerOptions": {
-    "jsx": "react-jsx"
-  },
-  "include": ["src"]
-}
-```
-
-**`oxlint.config.ts`:**
-
-```ts
-import { defineConfig } from "oxlint"
-import { base, react, tanstack } from "@geril07/configs/oxlint"
-
-export default defineConfig({
-  extends: [base, react, tanstack],
-  ignorePatterns: ["dist/**", ".vinxi/**"],
-})
-```
-
----
-
-### Example D: Node.js Backend Service
+### Example C: Node.js Backend Service
 
 **`tsconfig.json`:**
 

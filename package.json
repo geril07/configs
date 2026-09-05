@@ -19,7 +19,6 @@
     "./oxlint/base": "./oxlint/base.js",
     "./oxlint/react": "./oxlint/react.js",
     "./oxlint/next": "./oxlint/next.js",
-    "./oxlint/tanstack": "./oxlint/tanstack.js",
     "./oxlint/node": "./oxlint/node.js",
     "./oxlint/typed": "./oxlint/typed.js",
     "./oxlint/anti-slop": "./oxlint/anti-slop.js",
