@@ -1,12 +1,50 @@
 {
-  "name": "@geril2207/config",
+  "name": "@geril07/configs",
   "version": "1.0.0",
-  "description": "Monorepo of My Configs",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "description": "Reusable TypeScript, Oxlint, and Oxfmt configuration primitives.",
+  "license": "MIT",
+  "files": [
+    "ts",
+    "oxlint",
+    "oxfmt",
+    "plugins",
+    "README.md",
+    "LICENSE"
+  ],
+  "type": "module",
+  "exports": {
+    "./ts/base": "./ts/base.json",
+    "./ts/bundler": "./ts/bundler.json",
+    "./ts/node": "./ts/node.json",
+    "./oxlint/base": "./oxlint/base.js",
+    "./oxlint/react": "./oxlint/react.js",
+    "./oxlint/next": "./oxlint/next.js",
+    "./oxlint/tanstack": "./oxlint/tanstack.js",
+    "./oxlint/node": "./oxlint/node.js",
+    "./oxlint/typed": "./oxlint/typed.js",
+    "./oxlint/anti-slop": "./oxlint/anti-slop.js",
+    "./oxlint": "./oxlint/index.js",
+    "./oxfmt/base": "./oxfmt/base.js",
+    "./oxfmt/tailwind": "./oxfmt/tailwind.js",
+    "./oxfmt": "./oxfmt/index.js",
+    "./plugin/anti-slop": "./plugins/anti-slop/index.ts"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "scripts": {
+    "lint": "oxlint",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check"
+  },
+  "peerDependencies": {
+    "oxfmt": ">=0.60.0",
+    "oxlint": ">=1.80.0",
+    "typescript": ">=5.8.0"
+  },
+  "peerDependenciesMeta": {
+    "@oxlint/plugins": {
+      "optional": true
+    },
+    "oxlint-tsgolint": {
+      "optional": true
+    }
+  }
 }
