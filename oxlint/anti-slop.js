@@ -1,5 +1,5 @@
 export const antiSlop = {
-  jsPlugins: ["@geril07/configs/plugin/anti-slop"],
+  jsPlugins: ["@geril/configs/plugin/anti-slop"],
   rules: {
     "anti-slop/no-chained-type-assertions": "error",
     "anti-slop/no-conditional-empty-object-spread": "error",

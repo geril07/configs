@@ -1,5 +1,5 @@
 {
-  "name": "@geril07/configs",
+  "name": "@geril/configs",
   "version": "1.0.0",
   "description": "Reusable TypeScript, Oxlint, and Oxfmt configuration primitives.",
   "license": "MIT",

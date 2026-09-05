@@ -1,4 +1,4 @@
-# @geril07/configs
+# @geril/configs
 
 Minimal, composable configuration primitives for **TypeScript**, **Oxlint**, and **Oxfmt**.
 
@@ -6,11 +6,11 @@ Minimal, composable configuration primitives for **TypeScript**, **Oxlint**, and
 
 The base config is strict by default. Choose the runtime profile for the project:
 
-| Export                        | Target                           | Main settings                                                                                                                                                                   |
-| ----------------------------- | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `@geril07/configs/ts/base`    | Universal strict baseline        | `strict`, `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`, `noImplicitOverride`, `noFallthroughCasesInSwitch`, `noPropertyAccessFromIndexSignature`, `isolatedModules` |
-| `@geril07/configs/ts/bundler` | Vite and other frontend bundlers | Extends `base`; uses `module: "preserve"`, `moduleResolution: "bundler"`, and `noEmit: true`                                                                                    |
-| `@geril07/configs/ts/node`    | Node.js services                 | Extends `base`; uses `module: "nodenext"`, `moduleResolution: "nodenext"`, and `types: ["node"]`                                                                                |
+| Export                      | Target                           | Main settings                                                                                                                                                                   |
+| --------------------------- | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `@geril/configs/ts/base`    | Universal strict baseline        | `strict`, `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`, `noImplicitOverride`, `noFallthroughCasesInSwitch`, `noPropertyAccessFromIndexSignature`, `isolatedModules` |
+| `@geril/configs/ts/bundler` | Vite and other frontend bundlers | Extends `base`; uses `module: "preserve"`, `moduleResolution: "bundler"`, and `noEmit: true`                                                                                    |
+| `@geril/configs/ts/node`    | Node.js services                 | Extends `base`; uses `module: "nodenext"`, `moduleResolution: "nodenext"`, and `types: ["node"]`                                                                                |
 
 Declare `include`, `exclude`, and framework-specific `jsx` in the project-local config. The bundler profile intentionally does not choose a JSX transform.
 
@@ -18,20 +18,20 @@ Declare `include`, `exclude`, and framework-specific `jsx` in the project-local 
 
 Import the presets as JavaScript objects and compose them with `extends`:
 
-| Export                              | Scope                       | Policy                                                                                                                                                                                                                           |
-| ----------------------------------- | --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `@geril07/configs/oxlint/base`      | Universal                   | Correctness warnings plus explicit errors for high-confidence TypeScript, Oxc, and Unicorn defects. Includes `no-explicit-any`, invalid built-in arguments, unsafe type declarations, and accumulating-spread performance traps. |
-| `@geril07/configs/oxlint/react`     | React                       | Hooks and JSX correctness. React Compiler rules are explicitly disabled here; enable them in a reviewed project-specific profile.                                                                                                |
-| `@geril07/configs/oxlint/next`      | Next.js                     | Link, script, client-component, document/head, image, and polyfill correctness checks. Some font and Pages Router checks remain warnings.                                                                                        |
-| `@geril07/configs/oxlint/node`      | Node.js services            | Node module/path checks and Promise control-flow checks. `promise/catch-or-return` and `promise/no-return-in-finally` are warnings because intentional exceptions exist.                                                         |
-| `@geril07/configs/oxlint/typed`     | Type-aware linting          | `no-floating-promises`, `no-misused-promises`, and `switch-exhaustiveness-check`. Requires `oxlint-tsgolint` and a TypeScript 7-compatible project.                                                                              |
-| `@geril07/configs/oxlint/anti-slop` | Opt-in type-evidence policy | Vendored Dillon Mulroy rules for assertions, widening, unknown boundaries, dictionaries, reflection, and runtime `typeof` checks.                                                                                                |
+| Export                            | Scope                       | Policy                                                                                                                                                                                                                           |
+| --------------------------------- | --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `@geril/configs/oxlint/base`      | Universal                   | Correctness warnings plus explicit errors for high-confidence TypeScript, Oxc, and Unicorn defects. Includes `no-explicit-any`, invalid built-in arguments, unsafe type declarations, and accumulating-spread performance traps. |
+| `@geril/configs/oxlint/react`     | React                       | Hooks and JSX correctness. React Compiler rules are explicitly disabled here; enable them in a reviewed project-specific profile.                                                                                                |
+| `@geril/configs/oxlint/next`      | Next.js                     | Link, script, client-component, document/head, image, and polyfill correctness checks. Some font and Pages Router checks remain warnings.                                                                                        |
+| `@geril/configs/oxlint/node`      | Node.js services            | Node module/path checks and Promise control-flow checks. `promise/catch-or-return` and `promise/no-return-in-finally` are warnings because intentional exceptions exist.                                                         |
+| `@geril/configs/oxlint/typed`     | Type-aware linting          | `no-floating-promises`, `no-misused-promises`, and `switch-exhaustiveness-check`. Requires `oxlint-tsgolint` and a TypeScript 7-compatible project.                                                                              |
+| `@geril/configs/oxlint/anti-slop` | Opt-in type-evidence policy | Vendored Dillon Mulroy rules for assertions, widening, unknown boundaries, dictionaries, reflection, and runtime `typeof` checks.                                                                                                |
 
 ### React + Vite
 
 ```ts
 import { defineConfig } from "oxlint"
-import { base, react } from "@geril07/configs/oxlint"
+import { base, react } from "@geril/configs/oxlint"
 
 export default defineConfig({
   extends: [base, react],
@@ -43,7 +43,7 @@ export default defineConfig({
 
 ```ts
 import { defineConfig } from "oxlint"
-import { base, react, next } from "@geril07/configs/oxlint"
+import { base, react, next } from "@geril/configs/oxlint"
 
 export default defineConfig({
   extends: [base, react, next],
@@ -55,7 +55,7 @@ export default defineConfig({
 
 ```ts
 import { defineConfig } from "oxlint"
-import { base, node } from "@geril07/configs/oxlint"
+import { base, node } from "@geril/configs/oxlint"
 
 export default defineConfig({
   extends: [base, node],
@@ -76,7 +76,7 @@ Then compose `typed` at the root configuration level:
 
 ```ts
 import { defineConfig } from "oxlint"
-import { base, typed } from "@geril07/configs/oxlint"
+import { base, typed } from "@geril/configs/oxlint"
 
 export default defineConfig({
   extends: [base, typed],
@@ -87,14 +87,14 @@ Type-aware linting builds TypeScript programs. It can use more memory and time, 
 
 ## Oxfmt
 
-| Export                            | Description                                                                                          |
-| --------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `@geril07/configs/oxfmt/base`     | Modern defaults: `printWidth: 100`, `semi: false`, `tabWidth: 2`, double quotes, and trailing commas |
-| `@geril07/configs/oxfmt/tailwind` | `tailwind({ stylesheet, config, functions })` helper for Tailwind class sorting                      |
+| Export                          | Description                                                                                          |
+| ------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `@geril/configs/oxfmt/base`     | Modern defaults: `printWidth: 100`, `semi: false`, `tabWidth: 2`, double quotes, and trailing commas |
+| `@geril/configs/oxfmt/tailwind` | `tailwind({ stylesheet, config, functions })` helper for Tailwind class sorting                      |
 
 ```ts
 import { defineConfig } from "oxfmt"
-import { base } from "@geril07/configs/oxfmt"
+import { base } from "@geril/configs/oxfmt"
 
 export default defineConfig({
   ...base,
